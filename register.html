@@ -1,0 +1,156 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Rodger Fox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #1f4037, #99f2c8);
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .register-box {
+      background: rgba(0, 0, 0, 0.85);
+      padding: 2rem;
+      border-radius: 16px;
+      width: 350px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    .password-toggle {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 10px;
+      top: 14px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      font-size: 0.9em;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 1rem;
+      border: none;
+      background: linear-gradient(45deg, #ff4b1f, #1fddff);
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: #00e676;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>Create Account</h2>
+    <form id="registerForm">
+      <input type="text" id="fullName" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+
+      <div class="password-toggle">
+        <input type="password" id="password" placeholder="Password" required />
+        <span class="toggle-icon" onclick="togglePassword('password')">👁️</span>
+      </div>
+
+      <div class="password-toggle">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+        <span class="toggle-icon" onclick="togglePassword('confirmPassword')">👁️</span>
+      </div>
+
+      <label class="remember">
+        <input type="checkbox" id="rememberMe" /> Remember Me
+      </label>
+
+      <button type="submit">Register</button>
+      <a href="login.html">Already have an account? Login</a>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const remember = document.getElementById("rememberMe").checked;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const emailExists = users.some(user => user.email === email);
+      if (emailExists) {
+        alert("Email already registered. Please log in.");
+        return;
+      }
+
+      const newUser = { fullName, email, phone, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      if (remember) {
+        localStorage.setItem("rememberUser", JSON.stringify(newUser));
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+      alert("Registration successful!");
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>
