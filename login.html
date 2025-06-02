@@ -3,13 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Rodger Fox</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       padding: 0;
@@ -19,78 +16,79 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      color: white;
       overflow: hidden;
-      animation: fadeIn 1.5s ease-in;
+      color: white;
+      animation: bgMove 10s ease infinite;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .login-box {
-      background: rgba(0,0,0,0.85);
+      background: rgba(0, 0, 0, 0.85);
       padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-      width: 320px;
-      animation: slideUp 1s ease-out;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      width: 350px;
+      animation: fadeIn 1s ease-in;
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes fadeIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 1rem;
     }
 
-    input[type="email"], input[type="password"] {
+    input[type="email"],
+    input[type="password"] {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       margin: 10px 0;
       border: none;
       border-radius: 8px;
-      background: #f1f1f1;
-      color: #000;
-      transition: 0.3s ease;
+      font-size: 1em;
     }
 
-    input[type="email"]:focus, input[type="password"]:focus {
-      outline: none;
-      box-shadow: 0 0 8px #1fddff;
-      background: #fff;
+    .password-toggle {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 10px;
+      top: 14px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: #aaa;
     }
 
     .remember {
       display: flex;
       align-items: center;
-      font-size: 0.85em;
-      margin: 10px 0;
-    }
-
-    .remember input {
-      margin-right: 8px;
+      font-size: 0.9em;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border: none;
+      margin-top: 1rem;
       background: linear-gradient(45deg, #ff4b1f, #1fddff);
       border-radius: 8px;
       color: white;
       font-weight: bold;
-      font-size: 1em;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s;
     }
 
     button:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 10px #00e676;
+      transform: scale(1.05);
     }
 
     a {
@@ -100,12 +98,6 @@
       text-align: center;
       margin-top: 1rem;
     }
-
-    @media (max-width: 400px) {
-      .login-box {
-        width: 90%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -113,42 +105,51 @@
     <h2>Login</h2>
     <form id="loginForm">
       <input type="email" id="loginEmail" placeholder="Email" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
+
+      <div class="password-toggle">
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <span class="toggle-icon" onclick="togglePassword('loginPassword')">👁️</span>
+      </div>
+
       <label class="remember">
         <input type="checkbox" id="rememberMe" /> Remember Me
       </label>
+
       <button type="submit">Login</button>
       <a href="register.html">Don't have an account? Register</a>
     </form>
   </div>
 
   <script>
-    const loginForm = document.getElementById("loginForm");
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
 
-    loginForm.addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value.trim();
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("loginPassword").value;
       const remember = document.getElementById("rememberMe").checked;
 
-      let users = JSON.parse(localStorage.getItem("users")) || [];
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const matchingUser = users.find(user => user.email === email && user.password === password);
 
-      const matchedUser = users.find(user => user.email === email && user.password === password);
-
-      if (matchedUser) {
+      if (matchingUser) {
+        localStorage.setItem("currentUser", JSON.stringify(matchingUser));
         if (remember) {
-          localStorage.setItem("rememberUser", JSON.stringify(matchedUser));
+          localStorage.setItem("rememberUser", JSON.stringify(matchingUser));
         } else {
           localStorage.removeItem("rememberUser");
         }
-        localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+        alert("Login successful!");
         window.location.href = "dashboard.html";
       } else {
-        alert("Invalid email or password.");
+        alert("Invalid email or password!");
       }
     });
 
-    // Auto-login if remembered
+    // Auto-login with Remember Me
     window.addEventListener("DOMContentLoaded", () => {
       const remembered = JSON.parse(localStorage.getItem("rememberUser"));
       if (remembered) {
