@@ -4,136 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rodger Fox | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik+Burned&display=swap" rel="stylesheet">
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Orbitron', sans-serif;
-      overflow: hidden;
     }
 
     body {
-      position: relative;
-      color: white;
-    }
-
-    .bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
-    .bg-video iframe {
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 20px;
-      text-align: center;
-    }
-
-    .artist-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid white;
-      margin-bottom: 1rem;
-      object-fit: cover;
-      box-shadow: 0 0 10px #fff;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
-      font-family: 'Permanent Marker', cursive;
+      font-family: 'Rubik Burned', cursive;
       font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
-      text-shadow: 0 0 10px #ff4b2b, 0 0 20px #1cb5e0;
+      color: #f5f5f5;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff;
     }
 
-    .followers {
+    .links {
       display: flex;
-      justify-content: space-around;
-      margin: 1rem 0 2rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
     }
 
-    .followers div {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 1.2rem;
-      box-shadow: 0 0 10px #fff3;
-    }
-
-    .socials a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
+    .links a {
+      color: #fff;
+      font-size: 1.5rem;
       text-decoration: none;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      font-weight: bold;
-      border: 2px solid white;
-      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+      border: 2px solid #00eaff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff inset;
     }
 
-    .socials a:hover {
-      transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 10px #fff;
+    .links a:hover {
+      background-color: #00eaff;
+      color: #000;
+      box-shadow: 0 0 15px #fff, 0 0 25px #fff inset;
+    }
+
+    iframe {
+      display: none; /* hide the player */
     }
   </style>
 </head>
 <body>
-  <div class="bg-video">
-    <iframe src="https://www.youtube.com/embed/VF8MOM8H6P0?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=VF8MOM8H6P0&modestbranding=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-    <div class="overlay"></div>
+
+  <h1>Rodger Fox 🎧</h1>
+
+  <div class="links">
+    <a href="https://youtube.com/@shaqshagido6499?si=XEZepPY7PmvqeAKh" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@rodgerfox254?_t=ZM-8wsjWHCMpjM&_r=1" target="_blank">TikTok</a>
+    <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">Spotify</a>
   </div>
 
-  <div class="container">
-    <img src="https://via.placeholder.com/150x150.png?text=Rodger+Fox" alt="Rodger Fox" class="artist-image" />
-    <h1>Rodger Fox</h1>
+  <!-- Hidden background music from YouTube -->
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/VF8MOM8H6P0?autoplay=1&loop=1&playlist=VF8MOM8H6P0" frameborder="0" allow="autoplay"></iframe>
 
-    <div class="followers">
-      <div>Spotify Fans<br><span>20K+</span></div>
-      <div>TikTok Followers<br><span>35K+</span></div>
-      <div>YouTube Subs<br><span>12K+</span></div>
-    </div>
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      window.location.href = "dashboard.html";
+    }
+  </script>
 
-    <div class="socials">
-      <a href="https://youtube.com/@shaqshagido6499?si=XEZepPY7PmvqeAKh" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@rodgerfox254?_t=ZM-8wsjWHCMpjM&_r=1" target="_blank">TikTok</a>
-      <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">Spotify</a>
-    </div>
-  </div>
 </body>
 </html>
