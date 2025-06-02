@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery - Rodger Fox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Kalam&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%; overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #1a1a2e, #0f3460, #53354a, #903749);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    main {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      max-width: 600px;
+      width: 90%;
+    }
+    nav {
+      display: none; /* Hide nav for now */
+    }
+    h1 {
+      font-family: 'Kalam', cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff416c;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>📸 Gallery</h1>
+    <p>Coming Soon...</p>
+  </main>
+</body>
+</html>
