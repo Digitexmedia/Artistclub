@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Rodger Fox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Kalam&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+    }
+    #background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: linear-gradient(-45deg, #1a1a2e, #0f3460, #53354a, #903749);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    main {
+      padding: 2rem;
+      overflow-y: auto;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      color: white;
+      background: linear-gradient(45deg, #00c9ff, #92fe9d);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      transform: scale(1.05);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-family: 'Kalam', cursive;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    .contact-form label {
+      display: block;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+    .contact-form button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, #ff4b1f, #1fddff);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      transform: scale(1.05);
+    }
+    .contact-details {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .contact-details a {
+      color: #00e676;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .whatsapp-icon {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .social-links {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .social-links a {
+      margin: 0 10px;
+      display: inline-block;
+    }
+    .social-links img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="background-animation"></div>
+  <main>
+    <nav>
+      <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">🎧 Stream</a>
+    </nav>
+
+    <header>
+      <h1>📞 Contact Rodger Fox</h1>
+    </header>
+
+    <div class="contact-form">
+      <form action="#" method="post">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+
+      <div class="contact-details">
+        <p>📧 Email: <a href="mailto:lilmacur@gmail.com">lilmacur@gmail.com</a></p>
+        <p>
+          <img class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+          <a href="https://wa.me/254706648713" target="_blank">Chat on WhatsApp</a>
+        </p>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+        <a href="https://www.facebook.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="https://www.twitter.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        <a href="https://www.youtube.com" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
