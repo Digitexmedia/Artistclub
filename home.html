@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rodger Fox | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Kalam&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -19,102 +19,121 @@
     }
 
     body {
-      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1cb5e0, #000428);
-      background-size: 800% 800%;
-      animation: gradientFlow 20s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      position: relative;
       color: white;
-      padding: 2rem;
     }
 
-    @keyframes gradientFlow {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-video iframe {
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
     }
 
     .container {
-      max-width: 600px;
-      background: rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: auto;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    .artist-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      box-shadow: 0 0 10px #fff;
     }
 
     h1 {
+      font-family: 'Permanent Marker', cursive;
       font-size: 3rem;
       margin-bottom: 0.5rem;
+      color: #fff;
+      text-shadow: 0 0 10px #ff4b2b, 0 0 20px #1cb5e0;
     }
 
-    p {
-      font-family: 'Kalam', cursive;
+    .followers {
+      display: flex;
+      justify-content: space-around;
+      margin: 1rem 0 2rem;
+    }
+
+    .followers div {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      font-weight: bold;
       font-size: 1.2rem;
-      margin-bottom: 2rem;
+      box-shadow: 0 0 10px #fff3;
     }
 
-    .buttons a {
+    .socials a {
       display: inline-block;
       margin: 0.5rem;
       padding: 1rem 2rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
       text-decoration: none;
       border-radius: 12px;
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       font-weight: bold;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid white;
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
     }
 
-    .buttons a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(255,255,255,0.5);
-    }
-
-    .hidden {
-      display: none;
+    .socials a:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px #fff;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Rodger Fox</h1>
-    <p>Afrobeat Vibes | Artist | Creator | Entrepreneur</p>
-    <div class="buttons">
-      <a href="about.html">🎤 About</a>
-      <a href="gallery.html">🖼 Gallery</a>
-      <a href="dashboard.html" id="dashboardBtn" class="hidden">📊 Dashboard</a>
-      <a href="profile.html" id="profileBtn" class="hidden">👤 Profile</a>
-      <a href="login.html" id="loginBtn">🔐 Login</a>
-      <a href="register.html" id="registerBtn">📝 Register</a>
-      <a href="#" id="logoutBtn" class="hidden">🚪 Logout</a>
-      <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">🎧 Stream</a>
-    </div>
+  <div class="bg-video">
+    <iframe src="https://www.youtube.com/embed/VF8MOM8H6P0?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=VF8MOM8H6P0&modestbranding=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    <div class="overlay"></div>
   </div>
 
-  <script>
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  <div class="container">
+    <img src="https://via.placeholder.com/150x150.png?text=Rodger+Fox" alt="Rodger Fox" class="artist-image" />
+    <h1>Rodger Fox</h1>
 
-    const loginBtn = document.getElementById("loginBtn");
-    const registerBtn = document.getElementById("registerBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const dashboardBtn = document.getElementById("dashboardBtn");
-    const profileBtn = document.getElementById("profileBtn");
+    <div class="followers">
+      <div>Spotify Fans<br><span>20K+</span></div>
+      <div>TikTok Followers<br><span>35K+</span></div>
+      <div>YouTube Subs<br><span>12K+</span></div>
+    </div>
 
-    if (currentUser) {
-      loginBtn.classList.add("hidden");
-      registerBtn.classList.add("hidden");
-      dashboardBtn.classList.remove("hidden");
-      logoutBtn.classList.remove("hidden");
-      profileBtn.classList.remove("hidden");
-    }
-
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("currentUser");
-      location.reload();
-    });
-  </script>
+    <div class="socials">
+      <a href="https://youtube.com/@shaqshagido6499?si=XEZepPY7PmvqeAKh" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@rodgerfox254?_t=ZM-8wsjWHCMpjM&_r=1" target="_blank">TikTok</a>
+      <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">Spotify</a>
+    </div>
+  </div>
 </body>
 </html>
