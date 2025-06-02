@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - Rodger Fox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #0a192f; /* Dark blue background */
+      color: white;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #112240; /* Slightly lighter blue */
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #ccc;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.3rem;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+    }
+    input {
+      background: #e0e0e0;
+      color: #000;
+    }
+    button {
+      margin-top: 1.5rem;
+      background: #ff1744;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #e3002d;
+    }
+    .profile-pic {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .profile-pic img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #ff1744;
+    }
+    a.back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: #00e676;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>👤 My Profile</h2>
+
+    <div class="profile-pic">
+      <img src="https://via.placeholder.com/100" id="profileImage" alt="Profile Picture">
+      <input type="file" id="uploadPic" accept="image/*">
+    </div>
+
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" value="Rodger Fox" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" value="rodger@example.com" />
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" value="+254700000000" />
+
+    <label for="password">Change Password</label>
+    <input type="password" id="password" placeholder="New Password" />
+
+    <button onclick="updateProfile()">Update Profile</button>
+    <button onclick="logout()">Logout</button>
+
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    function updateProfile() {
+      alert("Profile updated successfully!");
+    }
+
+    function logout() {
+      localStorage.removeItem("rememberUser");
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("uploadPic").addEventListener("change", function(event) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById("profileImage").src = e.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    });
+  </script>
+</body>
+</html>
