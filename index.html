@@ -33,7 +33,7 @@
       100% { background-position: 0% 50%; }
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       background: rgba(0, 0, 0, 0.6);
       padding: 2rem;
       border-radius: 20px;
@@ -48,10 +48,14 @@
       font-size: 1.2rem;
       margin-bottom: 2rem;
     }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
     .buttons a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 1rem 2rem;
+      padding: 0.75rem 1.5rem;
       font-size: 1rem;
       text-decoration: none;
       border-radius: 12px;
@@ -64,6 +68,9 @@
       transform: scale(1.1);
       box-shadow: 0 0 15px rgba(255,255,255,0.5);
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -71,11 +78,41 @@
     <h1>Rodger Fox</h1>
     <p>Afrobeat Vibes | Artist | Creator | Entrepreneur</p>
     <div class="buttons">
-      <a href="shop.html">🛍 Shop</a>
       <a href="about.html">🎤 About</a>
-      <a href="contact.html">📞 Contact</a>
+      <a href="gallery.html">🖼 Gallery</a>
+      <a href="login.html" id="loginBtn">🔐 Login</a>
+      <a href="register.html" id="registerBtn">📝 Register</a>
+      <a href="profile.html" id="profileBtn" class="hidden">👤 Profile</a>
+      <a href="#" id="logoutBtn" class="hidden">🚪 Logout</a>
       <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">🎧 Stream</a>
     </div>
   </div>
+
+  <script>
+    // Simulate login state (toggle this in real app)
+    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+    const loginBtn = document.getElementById("loginBtn");
+    const registerBtn = document.getElementById("registerBtn");
+    const profileBtn = document.getElementById("profileBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (isLoggedIn) {
+      loginBtn.classList.add("hidden");
+      registerBtn.classList.add("hidden");
+      profileBtn.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+    } else {
+      loginBtn.classList.remove("hidden");
+      registerBtn.classList.remove("hidden");
+      profileBtn.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+    }
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.setItem("loggedIn", "false");
+      window.location.reload();
+    });
+  </script>
 </body>
 </html>
