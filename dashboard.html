@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rodger Fox | Artist Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }body {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #1f4037, #99f2c8);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+}
+
+.hamburger {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sidebar {
+  width: 260px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.sidebar a {
+  color: #00e676;
+  text-decoration: none;
+  margin: 10px 0;
+  font-weight: bold;
+  display: block;
+}
+
+.sidebar button {
+  background: crimson;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  margin-top: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.main-content {
+  margin-left: 260px;
+  flex: 1;
+  padding: 2rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  background: rgba(0,0,0,0.6);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.upload-form input, .upload-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">X</button>
+    <h2>Menu</h2>
+    <a href="#">🏠 Home</a>
+    <a href="#">⚙️ Settings</a>
+    <a href="#">🛍 Shop</a>
+    <a href="#">💳 Deposit</a>
+    <a href="#">💰 Withdraw</a>
+    <a href="#">📄 Transaction</a>
+    <a href="#">📤 Appload</a>
+    <a href="#">👤 Profile</a>
+    <a href="#">📜 About</a>
+    <a href="#">📬 Contact</a>
+    <a href="#">🔗 Share</a>
+    <a href="#">📱 App</a>
+    <a href="#">⚙️ Settings</a>
+    <button onclick="logout()">Logout</button>
+  </div>  <div class="main-content">
+    <div class="section">
+      <h2>Welcome, <span id="userName">Artist</span>!</h2>
+      <p>This is your personalized dashboard. Manage your products, upload photos, and connect with your fans.</p>
+    </div><div class="section">
+  <h2>Upload Your Product</h2>
+  <form class="upload-form" id="uploadForm">
+    <input type="text" placeholder="Product Title" id="productTitle" required />
+    <textarea placeholder="Description" id="productDesc" rows="4" required></textarea>
+    <input type="number" placeholder="Price (KES)" id="productPrice" required />
+    <input type="file" accept="image/*" id="productImage" required />
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
+<div class="section">
+  <h2>Your Artist Shop</h2>
+  <div class="product-grid" id="productList"></div>
+</div>
+
+<footer>
+  &copy; 2025 Rodger Fox | Designed for Creators by Creators
+</footer>
+
+  </div>  <script>
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userName").innerText = currentUser.fullname || "Artist";
+    }
+
+    function logout() {
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("rememberUser");
+      window.location.href = "login.html";
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    const uploadForm = document.getElementById("uploadForm");
+    const productList = document.getElementById("productList");
+    let artistProducts = JSON.parse(localStorage.getItem("artistProducts") || "[]");
+    renderProducts();
+
+    uploadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("productTitle").value;
+      const desc = document.getElementById("productDesc").value;
+      const price = document.getElementById("productPrice").value;
+      const imageFile = document.getElementById("productImage").files[0];
+      const timestamp = new Date().toLocaleString();
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const newProduct = {
+          id: Date.now(),
+          title,
+          desc,
+          price,
+          image: reader.result,
+          timestamp
+        };
+        artistProducts.push(newProduct);
+        localStorage.setItem("artistProducts", JSON.stringify(artistProducts));
+        renderProducts();
+        uploadForm.reset();
+      };
+      reader.readAsDataURL(imageFile);
+    });
+
+    function renderProducts() {
+      productList.innerHTML = "";
+      artistProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.title}" />
+          <h3>${product.title}</h3>
+          <p>${product.desc}</p>
+          <strong>KES ${product.price}</strong>
+          <p style='font-size: 0.7em;'>Uploaded on: ${product.timestamp}</p>
+          <button onclick="editProduct(${product.id})">Edit</button>
+          <button onclick="deleteProduct(${product.id})">Delete</button>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    function deleteProduct(id) {
+      artistProducts = artistProducts.filter(p => p.id !== id);
+      localStorage.setItem("artistProducts", JSON.stringify(artistProducts));
+      renderProducts();
+    }
+
+    function editProduct(id) {
+      const product = artistProducts.find(p => p.id === id);
+      if (product) {
+        document.getElementById("productTitle").value = product.title;
+        document.getElementById("productDesc").value = product.desc;
+        document.getElementById("productPrice").value = product.price;
+        deleteProduct(id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  </script></body>
+</html>
