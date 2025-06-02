@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rodger Fox | Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #001f3f; /* Dark blue */
+      color: white;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      background: #d3d3d3; /* Light grey */
+      color: black;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .product {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s;
+    }
+    .product:hover {
+      transform: scale(1.05);
+    }
+    .product-3d {
+      width: 100%;
+      height: 200px;
+      perspective: 1000px;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .product-3d-inner {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: rotate 10s linear infinite;
+    }
+    .product-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    @keyframes rotate {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+    .product h3 {
+      margin: 1rem 0 0.5rem;
+    }
+    .product p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .product .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .product button {
+      padding: 0.6rem;
+      border: none;
+      background: #ff0033; /* Vibrant red */
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .product button:hover {
+      background: #cc002a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Rodger Fox Merch Shop</h1>
+  <div class="products">
+    <div class="product">
+      <div class="product-3d">
+        <div class="product-3d-inner">
+          <img src="https://files.catbox.moe/ttlqy8.jpg" alt="Product A">
+        </div>
+      </div>
+      <h3>Rodger Tee A</h3>
+      <p>Kes. 1500</p>
+      <div class="btn-group">
+        <button onclick="checkout('Rodger Tee A', 'M-Pesa')">Buy with M-Pesa</button>
+        <button onclick="checkout('Rodger Tee A', 'PayPal')">Buy with PayPal</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-3d">
+        <div class="product-3d-inner">
+          <img src="https://files.catbox.moe/ur2cca.jpg" alt="Product B">
+        </div>
+      </div>
+      <h3>Rodger Tee B</h3>
+      <p>Kes. 1000</p>
+      <div class="btn-group">
+        <button onclick="checkout('Rodger Tee B', 'M-Pesa')">Buy with M-Pesa</button>
+        <button onclick="checkout('Rodger Tee B', 'PayPal')">Buy with PayPal</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-3d">
+        <div class="product-3d-inner">
+          <img src="https://files.catbox.moe/t9iqko.jpg" alt="Product C">
+        </div>
+      </div>
+      <h3>Rodger Tee C</h3>
+      <p>Kes. 1500</p>
+      <div class="btn-group">
+        <button onclick="checkout('Rodger Tee C', 'M-Pesa')">Buy with M-Pesa</button>
+        <button onclick="checkout('Rodger Tee C', 'PayPal')">Buy with PayPal</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-3d">
+        <div class="product-3d-inner">
+          <img src="https://files.catbox.moe/xayeap.jpg" alt="Product D">
+        </div>
+      </div>
+      <h3>Rodger Tee D</h3>
+      <p>Kes. 1000</p>
+      <div class="btn-group">
+        <button onclick="checkout('Rodger Tee D', 'M-Pesa')">Buy with M-Pesa</button>
+        <button onclick="checkout('Rodger Tee D', 'PayPal')">Buy with PayPal</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkout(productName, method) {
+      const deliveryCode = prompt(`Enter delivery code for ${method} payment:`);
+      const location = prompt("Enter your location:");
+      if (deliveryCode && location) {
+        alert(`Thanks for purchasing ${productName} via ${method}!\nDelivery to ${location} is being processed.`);
+        console.log(`ADMIN NOTIFY: New ${method} order for ${productName}, delivery code ${deliveryCode}, location ${location}`);
+      }
+    }
+  </script>
+</body>
+  </html>
