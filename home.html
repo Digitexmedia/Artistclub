@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rodger Fox | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik+Burned&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik+Burned&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -25,6 +25,7 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      padding: 1rem;
     }
 
     @keyframes gradientBG {
@@ -67,7 +68,7 @@
     }
 
     iframe {
-      display: none; /* hide the player */
+      display: none; /* hide the music player */
     }
   </style>
 </head>
@@ -76,18 +77,25 @@
   <h1>Rodger Fox 🎧</h1>
 
   <div class="links">
-    <a href="https://youtube.com/@shaqshagido6499?si=XEZepPY7PmvqeAKh" target="_blank">YouTube</a>
-    <a href="https://www.tiktok.com/@rodgerfox254?_t=ZM-8wsjWHCMpjM&_r=1" target="_blank">TikTok</a>
-    <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">Spotify</a>
+    <a href="https://youtube.com/@shaqshagido6499?si=XEZepPY7PmvqeAKh" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <a href="https://www.tiktok.com/@rodgerfox254?_t=ZM-8wsjWHCMpjM&_r=1" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank" rel="noopener noreferrer">Spotify</a>
   </div>
 
-  <!-- Hidden background music from YouTube -->
-  <iframe width="0" height="0" src="https://www.youtube.com/embed/VF8MOM8H6P0?autoplay=1&loop=1&playlist=VF8MOM8H6P0" frameborder="0" allow="autoplay"></iframe>
+  <!-- Background music from YouTube autoplay loop -->
+  <iframe 
+    width="0" 
+    height="0" 
+    src="https://www.youtube.com/embed/VF8MOM8H6P0?autoplay=1&loop=1&playlist=VF8MOM8H6P0" 
+    frameborder="0" 
+    allow="autoplay" 
+    allowfullscreen>
+  </iframe>
 
   <script>
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser) {
-      window.location.href = "dashboard.html";
+    // Redirect logged-in users automatically to dashboard
+    if (localStorage.getItem('currentUser')) {
+      window.location.href = 'dashboard.html';
     }
   </script>
 
