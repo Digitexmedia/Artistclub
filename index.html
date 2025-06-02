@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rodger Fox | Official Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Kalam&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+    }
+    body {
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1cb5e0, #000428);
+      background-size: 800% 800%;
+      animation: gradientFlow 20s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-family: 'Kalam', cursive;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .buttons a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rodger Fox</h1>
+    <p>Afrobeat Vibes | Artist | Creator | Entrepreneur</p>
+    <div class="buttons">
+      <a href="shop.html">🛍 Shop</a>
+      <a href="about.html">🎤 About</a>
+      <a href="contact.html">📞 Contact</a>
+      <a href="https://open.spotify.com/artist/717HmnSffVU331xg4IIYFO?si=oXD9a2J6SVext74Jys-0uA" target="_blank">🎧 Stream</a>
+    </div>
+  </div>
+</body>
+</html>
